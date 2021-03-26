@@ -7,7 +7,9 @@
             <p class="card-text">Producteur : {{ disque[4][1] }}</p>
             <p class="card-text">Rayon : {{ disque[5][1] }}</p>
             <p class="card-text">Genre : {{ disque[6][1] }}</p>
-            <a href="#" class="btn btn-primary">Detail</a>
+
+            <a v-if="single !== 'True'" href="/disque-detail" class="btn btn-primary">Detail</a>
+            <a v-else href="/" class="btn btn-primary">Retour</a>
         </div>
     </div>
 </template>
@@ -16,12 +18,13 @@
 export default {
     name: "Tile",
     props: {
-        disque: Array
+        disque: Array,
+        single: String
     },
 
 }
 </script>
 
 <style scoped>
-    
+   
 </style>

@@ -5,14 +5,13 @@ import './styles/app.css';
 import './bootstrap';
 import Vue from 'vue';
 import {VueConfig} from './VueConfig';
-import Main from './components/Main';
+import Main from './components/main/Main';
 
 
 new Vue({
     components: { 
         Main,
     },
-    delimiters: ['${', '}'],
     template: "<Main />",
     
 }).$mount('#app')

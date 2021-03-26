@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Spoutify{% endblock %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('detail') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('detail') }}
+{% endblock %}
+
+{% block body %}
+
+<div id="data" data-disque-id=" {{ disque.id }}"></div>
+
+<div id="app">
+    
+</div>
+
+
+{% endblock %}

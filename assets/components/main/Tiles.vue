@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import Tile from './Tile'
+import Tile from '../globals/Tile'
 
 export default {
     name:"Tiles",

@@ -9,9 +9,9 @@
 </template>
 
 <script>
-import Header from './Header';
+import Header from '../globals/Header';
 import Tiles from './Tiles';
-import Footer from './Footer';
+import Footer from '../globals/Footer';
 import axios from 'axios';
 
 
@@ -35,7 +35,7 @@ export default {
         loadDisque() {
             axios.get("https://localhost:8000/disque").then(response => {
                 this.disques = response.data
-                console.log(response.data)
+                //console.log(response.data)
                 })
         },
         // loadGenre() {

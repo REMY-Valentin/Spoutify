@@ -86,11 +86,37 @@ class DisqueController extends AbstractController
     /**
      * @Route("/{id}", name="disque_show", methods={"GET"})
      */
-    public function show(Disque $disque): Response
+    public function show(int $id, DisqueRepository $disqueRepository)
     {
-        return $this->render('disque/show.html.twig', [
-            'disque' => $disque,
-        ]);
+        $disque = $this->getDoctrine()
+                ->getRepository(Disque::class)
+                ->findWithFullData($id);
+        
+        $data = [
+            $disque->getId(),
+            $disque->getName(),
+            $disque->getDate(),   
+            [
+                $disque->getAuteurId()->toArray()[0]->getId(),
+                $disque->getAuteurId()->toArray()[0]->getName(),
+            ],
+            [
+                $disque->getProducteurId()->toArray()[0]->getId(),
+                $disque->getProducteurId()->toArray()[0]->getName(),
+            ],
+            [
+                $disque->getRayonId()->getId(),
+                $disque->getRayonId()->getName(),
+            ],
+            [
+                $disque->getGenreId()->toArray()[0]->getId(),
+                $disque->getGenreId()->toArray()[0]->getName(),
+            ],         
+        ];
+            
+        
+        
+        return $this->json($data);
     }
 
     /**

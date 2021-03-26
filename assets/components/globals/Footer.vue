@@ -16,9 +16,10 @@ export default {
         position:relative;
         bottom:0;
         width:100%;
-        /* padding-top:50px; */
+        margin-top:2em;
         height:50px;
         border: 1px solid black;
         display: flex;
+        justify-content: center;
     }
 </style>

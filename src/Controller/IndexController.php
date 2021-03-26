@@ -14,35 +14,21 @@ class IndexController extends AbstractController
      */
     public function index(): Response
     {
-        $items = $this->getDoctrine()
-            ->getRepository(Disque::class)
-            ->findAll();
-        //dump($items);
-        return $this->render('index/index.html.twig', [
-            'controller_name' => 'IndexController',
-            'items' => $items
-
-        ]);
+       
+        return $this->render('index/index.html.twig');
     }
 
     /**
-     * @Route("/get-data", name="get-data")
+     * @Route("/disque-detail/{id}", name="get-data")
      */
-    public function getData()
+    public function disqueDetail (Int $id)
     {
-        $items = $this->getDoctrine()
-            ->getRepository(Disque::class)
-            ->findAll();
-        $data = [];
-        for($i = 0; $i < count($items); $i++) {
-            $data[] = [
-                $items[$i]->getId(),
-                $items[$i]->getName(),
-                $items[$i]->getDate(),                
-            ];
-            
-        };
-        
-        return $this->json($data);
+        $disque = $this->getDoctrine()
+                ->getRepository(Disque::class)
+                ->find($id);
+        //dd($disque);
+        return $this->render('index/disqueDetail.html.twig',[
+            'disque' => $disque
+        ]);
     }
 }
