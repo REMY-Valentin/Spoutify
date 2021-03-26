@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Disque{% endblock %}
+
+{% block body %}
+    <h1>Create new Disque</h1>
+
+    {{ include('disque/_form.html.twig') }}
+
+    <a href="{{ path('disque_index') }}">back to list</a>
+{% endblock %}

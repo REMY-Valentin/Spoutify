@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Spoutify{% endblock %}
+
+
+{% block body %}
+{# 
+<div>
+    <ul>
+    {% for item in items %}
+        <li> {{item.id}} | {{item.Name}} | {{item.Date|date("d/m/Y")}}</li>
+    
+        {% for auteur in item.AuteurId %}
+            <li>{{ auteur.id }} | {{ auteur.Name }} </li>
+        {% endfor %}
+    
+        {% for producteur in item.ProducteurId %}
+            <li>{{ producteur.id }} | {{ producteur.Name }}</li>
+        {% endfor %}
+    
+        {% for genre in item.GenreId %}
+            <li>{{ genre.id }} | {{ genre.Name }} </li>
+        {% endfor %}
+        #################################################################################################
+    {% endfor %}
+    </ul>
+</div> #}
+
+
+<div id="app">
+
+</div>
+
+
+{% endblock %}
