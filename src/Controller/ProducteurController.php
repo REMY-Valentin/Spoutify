@@ -20,9 +20,19 @@ class ProducteurController extends AbstractController
      */
     public function index(ProducteurRepository $producteurRepository): Response
     {
-        return $this->render('producteur/index.html.twig', [
-            'producteurs' => $producteurRepository->findAll(),
-        ]);
+        $producteur = $this->getDoctrine()
+            ->getRepository(Producteur::class)
+            ->findAll();
+        $data = [];
+        for($i = 0; $i < count($producteur); $i++) {
+            $data[] = [
+                $producteur[$i]->getId(),
+                $producteur[$i]->getName(),             
+            ];
+            
+        };
+        
+        return $this->json($data);
     }
 
     /**

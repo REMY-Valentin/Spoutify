@@ -26,5 +26,7 @@ export default {
 </script>
 
 <style scoped>
-   
+   div {
+       flex-grow: 2;
+   }
 </style>

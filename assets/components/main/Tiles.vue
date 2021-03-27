@@ -26,6 +26,8 @@ export default {
         flex-flow: row wrap;
         justify-content: center;
         margin: 1em;
+        
+
         /* padding: 1em; */
     }
 </style>

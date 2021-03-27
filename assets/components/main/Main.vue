@@ -1,7 +1,8 @@
 <template>
     <div>
         <Header />
-        <div>
+        <div id="main">
+            <Navbar :navbar="navbar" />
             <Tiles :disques="disques" />
         </div>
         <Footer />
@@ -12,6 +13,7 @@
 import Header from '../globals/Header';
 import Tiles from './Tiles';
 import Footer from '../globals/Footer';
+import Navbar from '../globals/Navbar';
 import axios from 'axios';
 
 
@@ -21,15 +23,20 @@ export default {
     components: {
         Header,
         Tiles,
+        Navbar,
         Footer
     },
     data() {
         return {
-            disques: []
+            disques: [],
+            navbar: []
         }
     },
     created() {
         this.loadDisque();
+        this.loadGenre();
+        this.loadAuteur();
+        this.loadProd();
     },
     methods: {
         loadDisque() {
@@ -38,13 +45,28 @@ export default {
                 //console.log(response.data)
                 })
         },
-        // loadGenre() {
-        //     axios.get("https://localhost:8000/genre").then(response => {
-        //         this.disques = response.data
-        //         console.log(response.data)
-        //         })
-        // }
+        loadGenre() {
+            axios.get("https://localhost:8000/genre").then(response => {
+                //console.log(response.data)
+                this.navbar.push(response.data)
+                })
+        },
+        loadAuteur() {
+            axios.get("https://localhost:8000/auteur").then(response => {
+                //console.log(response.data)
+                this.navbar.push(response.data);
+                })
+        },
+        loadProd() {
+            axios.get("https://localhost:8000/producteur").then(response => {
+                //console.log(response.data)
+                this.navbar.push(response.data);
+                })
+        }
     }
 }
 </script>
 
+<style scoped>
+   
+</style>

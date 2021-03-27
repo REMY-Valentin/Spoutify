@@ -20,9 +20,19 @@ class AuteurController extends AbstractController
      */
     public function index(AuteurRepository $auteurRepository): Response
     {
-        return $this->render('auteur/index.html.twig', [
-            'auteurs' => $auteurRepository->findAll(),
-        ]);
+        $auteur = $this->getDoctrine()
+            ->getRepository(Auteur::class)
+            ->findAll();
+        $data = [];
+        for($i = 0; $i < count($auteur); $i++) {
+            $data[] = [
+                $auteur[$i]->getId(),
+                $auteur[$i]->getName(),             
+            ];
+            
+        };
+        
+        return $this->json($data);
     }
 
     /**
