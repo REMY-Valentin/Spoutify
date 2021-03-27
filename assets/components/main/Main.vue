@@ -2,7 +2,11 @@
     <div>
         <Header />
         <div id="main">
-            <Navbar :navbar="navbar" />
+            <Navbar 
+            @genre-select="genreSelect"
+            @auteur-select="auteurSelect"
+            @prod-select="prodSelect"
+            :navbar="navbar" />
             <Tiles :disques="disques" />
         </div>
         <Footer />
@@ -34,9 +38,10 @@ export default {
     },
     created() {
         this.loadDisque();
-        this.loadGenre();
-        this.loadAuteur();
-        this.loadProd();
+        // this.loadGenre();
+        // this.loadAuteur();
+        // this.loadProd();
+        this.loadNavbar();
     },
     methods: {
         loadDisque() {
@@ -45,24 +50,52 @@ export default {
                 //console.log(response.data)
                 })
         },
-        loadGenre() {
-            axios.get("https://localhost:8000/genre").then(response => {
+        // loadGenre() {
+        //     axios.get("https://localhost:8000/genre").then(response => {
+        //         //console.log(response.data)
+        //         this.navbar.push({'genre': response.data})
+        //         })
+        // },
+        // loadAuteur() {
+        //     axios.get("https://localhost:8000/auteur").then(response => {
+        //         //console.log(response.data)
+        //         this.navbar.push({'auteur': response.data});
+        //         })
+        // },
+        // loadProd() {
+        //     axios.get("https://localhost:8000/producteur").then(response => {
+        //         //console.log(response.data)
+        //         this.navbar.push({'producteur': response.data});
+        //         })
+        // },
+        loadNavbar() {
+            axios.get("https://localhost:8000/navbar").then(response => {
                 //console.log(response.data)
-                this.navbar.push(response.data)
+                this.navbar = response.data;
                 })
         },
-        loadAuteur() {
-            axios.get("https://localhost:8000/auteur").then(response => {
+        genreSelect(id) {
+            axios.get("https://localhost:8000/disque").then(response => {
+                this.disques = response.data.filter(disque => disque[6][0] === id)
                 //console.log(response.data)
-                this.navbar.push(response.data);
-                })
+            })
+            //this.disques = this.disques.filter(disque => disque[6][0] === id))
         },
-        loadProd() {
-            axios.get("https://localhost:8000/producteur").then(response => {
+        auteurSelect(id) {
+            axios.get("https://localhost:8000/disque").then(response => {
+                this.disques = response.data.filter(disque => disque[3][0] === id)
+                //console.log(response.data, id)
+            })
+            //this.disques = this.disques.filter(disque => disque[6][0] === id))
+        },
+        prodSelect(id) {
+            axios.get("https://localhost:8000/disque").then(response => {
+                this.disques = response.data.filter(disque => disque[4][0] === id)
                 //console.log(response.data)
-                this.navbar.push(response.data);
-                })
+            })
+            //this.disques = this.disques.filter(disque => disque[6][0] === id))
         }
+
     }
 }
 </script>

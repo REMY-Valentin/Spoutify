@@ -7,7 +7,7 @@
                         Genres
                     </button>
                     <div class="dropdown-menu">
-                        <div :key="genre[0]" v-for="genre in navbar[0]"> <button type="button" class="btn btn-outline-info" v-on:click="selectGenre(genre[0])">{{ genre[1] }}</button></div>
+                        <div :key="genre[0]" v-for="genre in navbar.genre"> <button type="button" class="btn btn-outline-info" v-on:click="$emit('genre-select', genre[0])">{{ genre[1] }}</button></div>
                     </div>
                 </div>
                 <div class="btn-group">
@@ -15,7 +15,7 @@
                         Auteurs
                     </button>
                     <div class="dropdown-menu">
-                        <div :key="auteur[0]" v-for="auteur in navbar[1]"> <button type="button" class="btn btn-outline-danger" v-on:click="selectAuteur(auteur[0])">{{ auteur[1] }}</button></div>
+                        <div :key="auteur[0]" v-for="auteur in navbar.auteur"> <button type="button" class="btn btn-outline-danger" v-on:click="$emit('auteur-select', auteur[0])">{{ auteur[1] }}</button></div>
                     </div>
                 </div>
                 <div class="btn-group">
@@ -23,7 +23,7 @@
                         Producteurs
                     </button>
                     <div class="dropdown-menu">
-                        <div :key="prod[0]" v-for="prod in navbar[2]"> <button type="button" class="btn btn-outline-warning" v-on:click="selectProducteur(prod[0])">{{ prod[1] }}</button></div>
+                        <div :key="prod[0]" v-for="prod in navbar.producteur"> <button type="button" class="btn btn-outline-warning" v-on:click="$emit('prod-select',prod[0])">{{ prod[1] }}</button></div>
                     </div>
                 </div>
             </div>
@@ -36,24 +36,8 @@
 export default {
     name:"Navbar",
     props: {
-        navbar: Array
+        navbar: Object
     },
-    methods: {
-        selectGenre(id) {
-            console.log("Genre :", id)
-        },
-        selectAuteur(id) {
-            console.log("auteur : ", id)
-        },
-        selectProducteur(id) {
-            console.log("producteur : ", id)
-        }
-    },
-    mounted() {
-        const auteurs = navbar[0];
-        const genres = navbar[1];
-        return auteurs, genres;
-    }
 }
 
 </script>

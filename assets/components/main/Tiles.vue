@@ -1,7 +1,9 @@
 <template>
 <div>
     <div :key="disque[0]" v-for="disque in disques">
-        <Tile :disque="disque"/>
+        <Tile
+        
+        :disque="disque"/>
     </div>
 </div>
 </template>
@@ -16,7 +18,12 @@ export default {
     },
     props: {
         disques: Array
-    } 
+    },
+    methods: {
+        genreSelect(id) {
+            console.log(id)
+        }
+    },
 }
 </script>
 
